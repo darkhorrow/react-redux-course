@@ -6,12 +6,12 @@ export default class Calculator extends Component {
         super(props)
     
         this.state = {
-            message: "Hello world!"
+            message: ""
         }
     }
 
     handleClick(value) {
-        this.setState({message: value});
+        this.setState({message: this.state.message + value});
     }
     
     render() {
