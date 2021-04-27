@@ -31,7 +31,6 @@ export default class Calculator extends Component {
                 this.setState({display: this.state.display + number.toString()});
                 break;
             case FIRST_FIGURE_STATE:
-                console.log(this.calculatorState);
                 this.firstFigure = this.firstFigure * 10 +  number;
                 this.setState({display: this.state.display + number.toString()});
                 break;
