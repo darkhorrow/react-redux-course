@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import Display from './display';
+import Keyboard from './keyboard';
 
 const INIT_STATE = 0;
 const FIRST_FIGURE_STATE = 1;
@@ -109,43 +111,16 @@ export default class Calculator extends Component {
     
     render() {
         return (
-            <div>
-                <p>{this.state.display}</p>
+            <div className="container mt-2">
                 <table border={1}>
+                    <thead>
+                        <tr>
+                            <Display input={this.state.display}/>
+                            <th><button className="btn btn-outline-dark" onClick={()=>{this.handleClick('C')}}>C</button></th>
+                        </tr>
+                    </thead>
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td><button onClick={()=>{this.handleClick('')}}>C</button></td>
-                        </tr>
-                        <tr>
-                            <td><button onClick={()=>{this.handleClick(7)}}>7</button></td>
-                            <td><button onClick={()=>{this.handleClick(8)}}>8</button></td>
-                            <td><button onClick={()=>{this.handleClick(9)}}>9</button></td>
-                            <td><button onClick={()=>{this.handleClick('X')}}>X</button></td>
-                        </tr>
-                        
-                        <tr>
-                            <td><button onClick={()=>{this.handleClick(4)}}>4</button></td>
-                            <td><button onClick={()=>{this.handleClick(5)}}>5</button></td>
-                            <td><button onClick={()=>{this.handleClick(6)}}>6</button></td>
-                            <td><button onClick={()=>{this.handleClick('-')}}>-</button></td>
-                        </tr>
-                        
-                        <tr>
-                            <td><button onClick={()=>{this.handleClick(1)}}>1</button></td>
-                            <td><button onClick={()=>{this.handleClick(2)}}>2</button></td>
-                            <td><button onClick={()=>{this.handleClick(3)}}>3</button></td>
-                            <td><button onClick={()=>{this.handleClick('+')}}>+</button></td>
-                        </tr>
-
-                        <tr>
-                            <td><button onClick={()=>{this.handleClick('/')}}>/</button></td>
-                            <td><button onClick={()=>{this.handleClick(0)}}>0</button></td>
-                            <td><button onClick={()=>{this.handleClick(',')}}>,</button></td>
-                            <td><button onClick={()=>{this.handleClick('=')}}>=</button></td>
-                        </tr>
+                        <Keyboard output={(value)=>{this.handleClick(value)}}/>
                     </tbody>
                 </table>
             </div>

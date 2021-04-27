@@ -1,12 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import reportWebVitals from './reportWebVitals';
 import Calculator from './components/calculator';
+import Heroes from './components/heroes';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Calculator />
+    <Tabs defaultActiveKey="heroes" id="uncontrolled-tab-example">
+      <Tab eventKey="calculator" title="Calculator">
+        <Calculator />
+      </Tab>
+      <Tab eventKey="heroes" title="Heroes">
+        <Heroes />
+      </Tab>
+    </Tabs>
   </React.StrictMode>,
   document.getElementById('root')
 );
