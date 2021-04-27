@@ -11,14 +11,20 @@ export default class Calculator extends Component {
     }
 
     handleClick(value) {
-        this.setState({message: this.state.message + value});
+        this.setState({message: value ? this.state.message + value : ''});
     }
     
     render() {
         return (
             <div>
                 <p>{this.state.message}</p>
-                <table>
+                <table border={1}>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><button onClick={()=>{this.handleClick('')}}>C</button></td>
+                    </tr>
                     <tr>
                         <td><button onClick={()=>{this.handleClick(7)}}>7</button></td>
                         <td><button onClick={()=>{this.handleClick(8)}}>8</button></td>
