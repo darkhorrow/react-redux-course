@@ -20,7 +20,7 @@ export default class List extends Component {
                             {hero.description}
                         </div>
                         <div className="col-2">
-                            <button onClick={()=>{this.props.onDelete(hero)}} type="button" name="removehero" id="removehero" className="btn btn-danger">Remove hero</button>
+                            <button onClick={()=>{this.props.onDelete(i)}} type="button" name="remove" id="remove" className="btn btn-danger">{this.props.deleteText}</button>
                         </div>
                     </div>
                 </li>

@@ -20,8 +20,9 @@ export default class Heroes extends Component {
         this.setState({heroes: [...this.state.heroes, element]});
     }
 
-    deleteHero(heroToDelete) {
-        const filteredHeroes = this.state.heroes.filter((hero) => { return hero.name !== heroToDelete.name; });
+    deleteHero(elementIndex) {
+        const filteredHeroes = this.state.heroes;
+        filteredHeroes.splice(elementIndex, 1);
         this.setState({heroes: filteredHeroes});
     }
     
@@ -33,7 +34,7 @@ export default class Heroes extends Component {
                         <Form onAdd={(element)=>{this.addHero(element)}}/>
                     </div>
                     <div className="col-8">
-                        <List elements={this.state.heroes} onDelete={(element)=>{this.deleteHero(element)}}/>
+                        <List elements={this.state.heroes} onDelete={(element)=>{this.deleteHero(element)}} deleteText="Remove hero" />
                     </div>
                 </div>
             </div>
