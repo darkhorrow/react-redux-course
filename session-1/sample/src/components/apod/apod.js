@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import './apod.css';
 import Alert from '../alert';
 import Video from '../video';
+import { API_KEY } from '../../config';
 
 export default class Apod extends Component {
     constructor(props) {
@@ -21,13 +22,13 @@ export default class Apod extends Component {
     }
 
     componentDidMount() {
-        fetch('https://api.nasa.gov/planetary/apod?api_key=Qfnl5fKDlUG07SudvfLFhmSvCP5km1muKkDXPmou')
+        fetch('https://api.nasa.gov/planetary/apod?api_key=' + API_KEY)
             .then(response => response.json())
             .then(data => {this.setState({apod: data})});
     }
 
     handleDateChange(date) {
-        const url = 'https://api.nasa.gov/planetary/apod?api_key=Qfnl5fKDlUG07SudvfLFhmSvCP5km1muKkDXPmou&date=' + 
+        const url = 'https://api.nasa.gov/planetary/apod?api_key=' + API_KEY + '&date=' + 
             date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
 
         this.setState({dateSelected: date});
