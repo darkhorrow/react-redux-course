@@ -8,6 +8,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import reportWebVitals from './reportWebVitals';
 import Calculator from './components/calculator';
 import Heroes from './components/heroes';
+import Apod from './components/apod/apod';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,6 +18,9 @@ ReactDOM.render(
       </Tab>
       <Tab eventKey="heroes" title="Heroes">
         <Heroes />
+      </Tab>
+      <Tab eventKey="apod" title="Apod">
+        <Apod />
       </Tab>
     </Tabs>
   </React.StrictMode>,

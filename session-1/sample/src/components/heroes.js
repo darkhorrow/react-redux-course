@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import List from './list';
 import Form from './form';
+import Alert from './alert';
 
 export default class Heroes extends Component {
     
@@ -33,6 +34,10 @@ export default class Heroes extends Component {
         filteredHeroes.splice(elementIndex, 1);
         this.setState({heroes: filteredHeroes});
     }
+
+    onAlertClose() {
+        this.setState({error: {isActive: false, message: ''}});
+    }
     
     render() {
         return (
@@ -47,17 +52,7 @@ export default class Heroes extends Component {
                     </div>
                 </div>
             </div>
-            {
-                this.state.error.isActive ?
-                <div className="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>ERROR</strong> - {this.state.error.message}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                :
-                null
-            }
+            <Alert show={this.state.error.isActive} message={this.state.error.message} onClose={() => {this.onAlertClose()}}/>
             </>
         )
     }
