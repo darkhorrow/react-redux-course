@@ -9,6 +9,7 @@ import reportWebVitals from './reportWebVitals';
 import Calculator from './components/calculator';
 import Heroes from './components/heroes';
 import Apod from './components/apod/apod';
+import Beers from './components/beer/beer';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -21,6 +22,9 @@ ReactDOM.render(
       </Tab>
       <Tab eventKey="apod" title="Apod">
         <Apod />
+      </Tab>
+      <Tab eventKey="beer" title="Beers">
+        <Beers />
       </Tab>
     </Tabs>
   </React.StrictMode>,
