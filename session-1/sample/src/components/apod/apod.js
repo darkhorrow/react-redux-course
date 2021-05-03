@@ -3,8 +3,8 @@ import Card from 'react-bootstrap/Card'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import './apod.css';
-import Alert from '../alert';
-import Video from '../video';
+import Alert from '../commons/alert';
+import Video from '../commons/video';
 import { API_KEY } from '../../config';
 
 export default class Apod extends Component {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import List from './list';
 import Form from './form';
-import Alert from './alert';
+import Alert from '../commons/alert';
 
 export default class Heroes extends Component {
     

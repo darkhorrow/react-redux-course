@@ -4,11 +4,11 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import reportWebVitals from './reportWebVitals';
-import Calculator from './components/calculator';
-import Heroes from './components/heroes';
+import Calculator from './components/calculator/calculator';
+import Heroes from './components/heroes/heroes';
 import Apod from './components/apod/apod';
 import Beers from './components/beer/beer';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 
@@ -20,25 +20,25 @@ ReactDOM.render(
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link><Link to="/calculator" className="nav-link">Calculator</Link></Nav.Link>
-              <Nav.Link><Link to="/heroes" className="nav-link">Heroes</Link></Nav.Link>
-              <Nav.Link><Link to="/apod" className="nav-link">Apod</Link></Nav.Link>
-              <Nav.Link><Link to="/" className="nav-link">Beers</Link></Nav.Link>
+              <Nav.Link><NavLink exact to="/calculator" className="nav-link" activeClassName="active">Calculator</NavLink></Nav.Link>
+              <Nav.Link><NavLink exact to="/heroes" className="nav-link" activeClassName="active">Heroes</NavLink></Nav.Link>
+              <Nav.Link><NavLink exact to="/apod" className="nav-link" activeClassName="active">Apod</NavLink></Nav.Link>
+              <Nav.Link><NavLink exact to="/" className="nav-link" activeClassName="active">Beers</NavLink></Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
 
         <Switch>
-          <Route path="/calculator">
+          <Route exact path="/calculator">
             <Calculator />
           </Route>
-          <Route path="/heroes">
+          <Route exact path="/heroes">
             <Heroes />
           </Route>
-          <Route path="/apod">
+          <Route exact path="/apod">
             <Apod />
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             <Beers />
           </Route>
         </Switch>
