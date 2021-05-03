@@ -1,28 +1,48 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import reportWebVitals from './reportWebVitals';
-import Calculator from './components/calculator';
-import Heroes from './components/heroes';
+import Calculator from './components/calculator/calculator';
+import Heroes from './components/heroes/heroes';
 import Apod from './components/apod/apod';
+import Beers from './components/beer/beer';
+import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
+import Navbar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Tabs defaultActiveKey="heroes" id="uncontrolled-tab-example">
-      <Tab eventKey="calculator" title="Calculator">
-        <Calculator />
-      </Tab>
-      <Tab eventKey="heroes" title="Heroes">
-        <Heroes />
-      </Tab>
-      <Tab eventKey="apod" title="Apod">
-        <Apod />
-      </Tab>
-    </Tabs>
+    <Router>
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+          <Navbar.Brand>React Course Exercises</Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="mr-auto">
+              <Nav.Link><NavLink exact to="/calculator" className="nav-link" activeClassName="active">Calculator</NavLink></Nav.Link>
+              <Nav.Link><NavLink exact to="/heroes" className="nav-link" activeClassName="active">Heroes</NavLink></Nav.Link>
+              <Nav.Link><NavLink exact to="/apod" className="nav-link" activeClassName="active">Apod</NavLink></Nav.Link>
+              <Nav.Link><NavLink exact to="/" className="nav-link" activeClassName="active">Beers</NavLink></Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+
+        <Switch>
+          <Route exact path="/calculator">
+            <Calculator />
+          </Route>
+          <Route exact path="/heroes">
+            <Heroes />
+          </Route>
+          <Route exact path="/apod">
+            <Apod />
+          </Route>
+          <Route exact path="/">
+            <Beers />
+          </Route>
+        </Switch>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
