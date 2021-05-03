@@ -3,10 +3,6 @@ import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 
 
-function valuetext(value) {
-  return `${value}°`;
-}
-
 function BeerSlider(props) {
   const [value, setValue] = React.useState([0, 100]);
 
@@ -25,7 +21,6 @@ function BeerSlider(props) {
         onChange={handleChange}
         valueLabelDisplay="auto"
         aria-labelledby="range-slider"
-        getAriaValueText={valuetext}
         step={0.1}
       />
     </div>
