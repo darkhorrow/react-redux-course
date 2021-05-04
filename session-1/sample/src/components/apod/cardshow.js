@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Card from 'react-bootstrap/Card'
-import Video from '../video';
+import Video from '../commons/video';
 import { API_KEY } from '../../config';
 
 export default class CardShow extends Component {  
