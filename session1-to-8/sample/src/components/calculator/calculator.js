@@ -11,17 +11,18 @@ const OPERATORS = ['X', '/', '+', '-'];
 
 export default class Calculator extends Component {
     
-    calculatorState = INIT_STATE;
-    firstFigure = 0;
-    secondFigure = 0;
-    result = 0;
-    operator = '';
+    calculatorState = this.props.reduxCalculatorState;
+    firstFigure = this.props.reduxFirstFigure;
+    secondFigure = this.props.reduxSecondFigure;
+    result = this.props.reduxResult;
+    operator = this.props.reduxOperator;
+
     
     constructor(props) {
         super(props)
     
         this.state = {
-            display: ""
+            display: this.props.reduxDisplay
         }
     }
 
@@ -31,12 +32,15 @@ export default class Calculator extends Component {
                 this.firstFigure = number;
                 this.calculatorState = FIRST_FIGURE_STATE;
                 this.setState({display: this.state.display + number.toString()});
+                this.props.updateCalculator({calculatorState: this.calculatorState, firstFigure: this.firstFigure, display: this.state.display + number.toString()});
                 break;
             case FIRST_FIGURE_STATE:
                 this.firstFigure = this.firstFigure * 10 +  number;
                 this.setState({display: this.state.display + number.toString()});
+                this.props.updateCalculator({firstFigure: this.firstFigure, display: this.state.display + number.toString()});
                 break;
             case SECOND_FIGURE_STATE:
+                this.props.updateCalculator({secondFigure: this.secondFigure, display: this.state.display + number.toString()});
                 this.secondFigure = this.secondFigure * 10 + number;
                 this.setState({display: this.state.display + number.toString()});
                 break;
@@ -47,6 +51,7 @@ export default class Calculator extends Component {
                 this.firstFigure = number;
                 this.calculatorState = FIRST_FIGURE_STATE;
                 this.setState({display: number.toString()});
+                this.props.updateCalculator({calculatorState: this.calculatorState, firstFigure: this.firstFigure, secondFigure: this.secondFigure, operator: this.operator, result: this.result, display: number.toString()});
                 break;
             default:
                 break;
@@ -62,6 +67,7 @@ export default class Calculator extends Component {
                     this.operator = symbol;
                     this.calculatorState = SECOND_FIGURE_STATE;
                     this.setState({display: this.state.display + symbol});
+                    this.props.updateCalculator({calculatorState: this.calculatorState, operator: this.operator, display: this.state.display + symbol});
                 }
                 break;
             case SECOND_FIGURE_STATE:
@@ -69,6 +75,7 @@ export default class Calculator extends Component {
                     this.result = this.resolve();
                     this.calculatorState = RESULT_STATE;
                     this.setState({display: this.state.display + symbol + this.result.toString()})
+                    this.props.updateCalculator({calculatorState: this.calculatorState, result: this.result, display: this.state.display + symbol + this.result.toString()});
                 }
                 break;
             case RESULT_STATE:
@@ -79,6 +86,7 @@ export default class Calculator extends Component {
                     this.result = 0;
                     this.setState({display: this.firstFigure.toString() + this.operator});
                     this.calculatorState = SECOND_FIGURE_STATE;
+                    this.props.updateCalculator({calculatorState: this.calculatorState, firstFigure: this.firstFigure, operator: this.operator, secondFigure: this.secondFigure, result: this.result, display: this.firstFigure.toString() + this.operator});
                 }
                 break;
             default:

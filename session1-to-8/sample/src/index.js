@@ -3,7 +3,7 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import reportWebVitals from './reportWebVitals';
-import Calculator from './components/calculator/calculator';
+import Calculator from './containers/calculatorcontainer';
 import Heroes from './containers/heroescontainer';
 import Apod from './components/apod/apod';
 import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Card from 'react-bootstrap/Card'
-import Video from '../commons/video';
+import Video from '../commons/video'
 import { API_KEY } from '../../config';
 
 export default class CardShow extends Component {  
@@ -9,6 +9,26 @@ export default class CardShow extends Component {
     
         this.state = {
             apod: {}
+        }
+    }
+
+    componentDidMount() {
+        if(this.props.date) {
+            const url = 'https://api.nasa.gov/planetary/apod?api_key=' + API_KEY + '&date=' + this.props.date;
+
+            fetch(url).then((response) => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    const message = 'Date must be between Jun 16, 1995 and Apr 29, 2021';
+                    this.props.onError(message);
+                    throw new Error(message);
+                }
+            })
+            .then(data => this.setState({apod: data}))
+            .catch((error) => {
+                console.log(error)
+            });
         }
     }
 
@@ -21,6 +41,7 @@ export default class CardShow extends Component {
                     return response.json();
                 } else {
                     const message = 'Date must be between Jun 16, 1995 and Apr 29, 2021';
+                    this.props.onError(message);
                     throw new Error(message);
                 }
             })

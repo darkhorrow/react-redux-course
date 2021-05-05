@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import CardShow from './cardshow';
+import Alert from '../commons/alert';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import './apod.css';
@@ -10,8 +11,16 @@ export default class Apod extends Component {
     
         this.state = {
             apod: {},
-            dateSelected: new Date()
+            dateSelected: new Date(),
+            error: {
+                isActive: false,
+                message: ""
+            }
         }
+    }
+
+    onAlertClose() {
+        this.setState({error: {isActive: false, message: ""}})
     }
     
     render() {
@@ -28,7 +37,8 @@ export default class Apod extends Component {
                     </div>
                 </div>
                 <hr></hr>
-                <CardShow date={this.state.dateSelected.getFullYear() + '-' + (this.state.dateSelected.getMonth()+1) + '-' + this.state.dateSelected.getDate()} />
+                <CardShow date={this.state.dateSelected.getFullYear() + '-' + (this.state.dateSelected.getMonth()+1) + '-' + this.state.dateSelected.getDate()} onError={(message)=>{this.setState({error: {isActive: true, message: message}})}}/>
+                <Alert show={this.state.error.isActive} message={this.state.error.message} onClose={() => {this.onAlertClose()}}/>
             </div>
         )
     }
