@@ -11,8 +11,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addHero: hero => {
-        dispatch({ type: "ADD_HERO", payload: { hero: hero } });
+    updateHeroes: heroes => {
+        dispatch({ type: "UPDATE_HEROES", payload: { heroes: heroes } });
     },
     changeInput: inputValues => {
         dispatch({ type: "CHANGE_INPUT", payload: { inputs: inputValues } });

@@ -23,13 +23,14 @@ export default class Heroes extends Component {
             return;
         }
         this.setState({heroes: [...this.state.heroes, element]});
-        this.props.addHero(element);
+        this.props.updateHeroes([...this.state.heroes, element]);
     }
 
     deleteHero(elementIndex) {
         const filteredHeroes = this.state.heroes;
         filteredHeroes.splice(elementIndex, 1);
         this.setState({heroes: filteredHeroes});
+        this.props.updateHeroes(filteredHeroes);
     }
 
     onAlertClose() {

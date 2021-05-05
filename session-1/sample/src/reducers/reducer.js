@@ -12,9 +12,9 @@ const reducer = (state = {
     },
   }, action) => {
   switch (action.type) {
-      case "ADD_HERO":
+      case "UPDATE_HEROES":
           state.heroes = {
-              heroes: [...state.heroes.heroes, action.payload.hero], 
+              heroes: action.payload.heroes, 
               inputs: state.heroes.inputs
           };
           return state;
