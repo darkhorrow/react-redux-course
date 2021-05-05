@@ -2,7 +2,6 @@ import Heroes from "../components/heroes/heroes";
 import { connect } from "react-redux";
 
 const mapStateToProps = state => {
-    console.log(state)
   return {
     heroes: state.heroes.heroes,
     inputs: state.heroes.inputs
