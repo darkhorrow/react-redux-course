@@ -9,11 +9,7 @@ export default class Heroes extends Component {
         super(props)
     
         this.state = {
-            heroes: [
-                 {name: 'Batman', description: 'A rich guy'}, 
-                 {name: 'Superman', description: 'A strong alien'}, 
-                 {name: 'Spiderman', description: 'A jumpy boy'}
-            ],
+            heroes: this.props.heroes,
             error: {
                 isActive: false,
                 message: ''
@@ -27,6 +23,7 @@ export default class Heroes extends Component {
             return;
         }
         this.setState({heroes: [...this.state.heroes, element]});
+        this.props.addHero(element);
     }
 
     deleteHero(elementIndex) {
@@ -45,7 +42,7 @@ export default class Heroes extends Component {
             <div className="container mt-5">
                 <div className="row">
                     <div className="col-4">
-                        <Form onAdd={(element)=>{this.addHero(element)}}/>
+                        <Form onAdd={(element)=>{this.addHero(element)}} onChange={(inputs)=>{this.props.changeInput(inputs)}} defaultData={this.props.inputs}/>
                     </div>
                     <div className="col-8">
                         <List elements={this.state.heroes} onDelete={(element)=>{this.deleteHero(element)}} deleteText="Remove hero" />

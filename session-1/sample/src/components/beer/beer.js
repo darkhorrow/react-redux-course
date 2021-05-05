@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import BeerDisplaySimple from './beerdisplaysimple';
 import BeerSlider from './beerslider';
 
-function Beers() {
-    const [range, setRange] = useState([0, 100]);
+function Beers({myRange, changeRange}) {
+    const [range, setRange] = useState(myRange);
     const [status, setStatus] = useState('idle');
     const [data, setData] = useState([]);
     const [beers, setBeers] = useState([]);
@@ -18,7 +18,7 @@ function Beers() {
             );
             const data = await response.json();
             setData(data);
-            setBeers(data);
+            setBeers(data.filter((beer) => {return (beer.abv >= range[0]) && (beer.abv <= range[1])}));
             setStatus('fetched');
         }
 
@@ -34,12 +34,13 @@ function Beers() {
 
     const handleChange = (newValue) => {
         setRange(newValue);
+        changeRange(newValue);
     };
 
     return (
         <div>
             <div className="container mt-5">
-                <BeerSlider newAlcoholValue={(value) => handleChange(value)} />
+                <BeerSlider newAlcoholValue={(value) => handleChange(value)} range={range}/>
                 <BeerDisplaySimple beers={beers}/>
             </div>
         </div>

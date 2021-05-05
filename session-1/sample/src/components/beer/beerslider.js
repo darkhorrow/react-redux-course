@@ -4,7 +4,7 @@ import Slider from '@material-ui/core/Slider';
 
 
 function BeerSlider(props) {
-  const [value, setValue] = React.useState([0, 100]);
+  const [value, setValue] = React.useState(props.range);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
